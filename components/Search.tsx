@@ -26,7 +26,7 @@ export const Search = ({ setTimeline }: SearchProps) => {
   }
 
   return (
-    <form className="flex items-center gap-6" onSubmit={fetchTimeline}>
+    <form className="flex items-center gap-6 mb-12" onSubmit={fetchTimeline}>
       <input
         required
         ref={userRef}
