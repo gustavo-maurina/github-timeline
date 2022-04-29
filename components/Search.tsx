@@ -30,7 +30,6 @@ export const Search = ({ setTimeline }: SearchProps) => {
       <input
         required
         ref={userRef}
-        style={{ boxShadow: "0 0 9px 5px #8b8a8a" }}
         type="text"
         placeholder="Digite o usuário ..."
         className="p-2 bg-zinc-700 rounded shadow-zinc-400 text-white"
