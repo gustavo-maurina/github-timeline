@@ -2,11 +2,11 @@ import { memo } from "react";
 import { Project } from "../models/Project";
 import { ProjectInfo } from "./ProjectInfo";
 
-type SearchResultProps = {
+type Props = {
   timeline: Project[] | undefined;
 };
 
-const SearchResultComponent = ({ timeline }: SearchResultProps) => {
+const SearchResultComponent = ({ timeline }: Props) => {
   function createTimeline() {
     let lastYear: number;
 

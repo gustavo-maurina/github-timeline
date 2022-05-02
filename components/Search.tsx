@@ -3,11 +3,11 @@ import { ArrowRight } from "react-feather";
 import { ProjectFetch } from "../models/ProjectFetch";
 import { fetchProjects } from "../services/fetchProjects";
 
-type IProps = {
+type Props = {
   handleTimelineFetch: (fetchResult: ProjectFetch) => void;
 };
 
-export const Search = ({ handleTimelineFetch }: IProps) => {
+export const Search = ({ handleTimelineFetch }: Props) => {
   const userRef = useRef<HTMLInputElement>(null);
 
   async function fetchTimeline(e: FormEvent) {
