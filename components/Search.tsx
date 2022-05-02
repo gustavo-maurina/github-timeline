@@ -30,7 +30,7 @@ export const Search = ({ handleTimelineFetch }: SearchProps) => {
         type="submit"
         className="bg-teal-600 hover:bg-teal-500 p-1 w-10 grid place-items-center"
       >
-        <ArrowRight color="white" />
+        <ArrowRight className="text-zinc-800" />
       </button>
     </form>
   );
