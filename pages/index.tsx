@@ -1,14 +1,30 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-
+import { Frown } from "react-feather";
 import { AppHeader } from "../components/AppHeader";
 import { Search } from "../components/Search";
 import { SearchResult } from "../components/SearchResult";
 import { Project } from "../models/Project";
+import { ProjectFetch } from "../models/ProjectFetch";
 
 const Home: NextPage = () => {
-  const [timeline, setTimeline] = useState<Project[]>();
+  const [timeline, setTimeline] = useState<ProjectFetch>();
+
+  function sortByDate(timeline: Project[]) {
+    return timeline.sort((a, b) => {
+      return (
+        new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+      );
+    });
+  }
+
+  function handleTimelineFetch(fetchResult: ProjectFetch): void {
+    const { isError, data } = fetchResult;
+    console.log(data);
+
+    setTimeline({ isError, data: sortByDate(data) });
+  }
 
   return (
     <>
@@ -20,10 +36,15 @@ const Home: NextPage = () => {
           <AppHeader />
         </div>
         <div>
-          <Search setTimeline={setTimeline} />
+          <Search handleTimelineFetch={handleTimelineFetch} />
         </div>
         <div>
-          <SearchResult timeline={timeline} />
+          {!timeline?.isError && <SearchResult timeline={timeline?.data} />}
+          {timeline?.isError && (
+            <p className="text-red-500 font-semibold text-lg flex items-center">
+              <Frown className="mr-2" /> Sem resultados para este usuário
+            </p>
+          )}
         </div>
       </section>
     </>

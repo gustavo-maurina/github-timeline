@@ -1,28 +1,20 @@
-import { Dispatch, FormEvent, SetStateAction, useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { ArrowRight } from "react-feather";
-import { Project } from "../models/Project";
+import { ProjectFetch } from "../models/ProjectFetch";
+import { fetchProjects } from "../services/fetchProjects";
 
 type SearchProps = {
-  setTimeline: Dispatch<SetStateAction<Project[] | undefined>>;
+  handleTimelineFetch: (fetchResult: ProjectFetch) => void;
 };
 
-export const Search = ({ setTimeline }: SearchProps) => {
+export const Search = ({ handleTimelineFetch }: SearchProps) => {
   const userRef = useRef<HTMLInputElement>(null);
-
-  function sortByDate(timeline: Project[]) {
-    return timeline.sort((a, b) => {
-      return (
-        new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-      );
-    });
-  }
 
   async function fetchTimeline(e: FormEvent) {
     e.preventDefault();
-    const userName = userRef.current?.value;
-    const req = await fetch(`https://api.github.com/users/${userName}/repos`);
-    const timeline: Project[] = await req.json();
-    setTimeline(sortByDate(timeline));
+    const username = userRef.current?.value;
+    await fetchProjects(username as string);
+    handleTimelineFetch(await fetchProjects(username as string));
   }
 
   return (
