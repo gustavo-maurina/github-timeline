@@ -12,9 +12,8 @@ export const Search = ({ handleTimelineFetch }: SearchProps) => {
 
   async function fetchTimeline(e: FormEvent) {
     e.preventDefault();
-    const username = userRef.current?.value;
-    await fetchProjects(username as string);
-    handleTimelineFetch(await fetchProjects(username as string));
+    const username = userRef.current?.value as string;
+    handleTimelineFetch(await fetchProjects(username));
   }
 
   return (
