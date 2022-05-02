@@ -18,15 +18,18 @@ export const Search = ({ handleTimelineFetch }: SearchProps) => {
   }
 
   return (
-    <form className="flex items-center gap-6 mb-12" onSubmit={fetchTimeline}>
+    <form className="flex mb-12  overflow-hidden" onSubmit={fetchTimeline}>
       <input
         required
         ref={userRef}
         type="text"
         placeholder="Digite o usuário ..."
-        className="p-2 bg-zinc-700 rounded shadow-zinc-400 text-white"
+        className="p-2 bg-zinc-700 text-white"
       />
-      <button type="submit" className="bg-teal-600 p-1 rounded">
+      <button
+        type="submit"
+        className="bg-teal-600 hover:bg-teal-500 p-1 w-10 grid place-items-center"
+      >
         <ArrowRight color="white" />
       </button>
     </form>
