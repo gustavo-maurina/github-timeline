@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { Frown } from "react-feather";
 import { AppHeader } from "../components/AppHeader";
+import { GoToTop } from "../components/GoToTop";
 import { Search } from "../components/Search";
 import { SearchResult } from "../components/SearchResult";
 import { Project } from "../models/Project";
@@ -47,6 +48,7 @@ const Home: NextPage = () => {
           )}
         </div>
       </section>
+      <GoToTop />
     </>
   );
 };
