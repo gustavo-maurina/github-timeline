@@ -17,7 +17,7 @@ export const Search = ({ handleTimelineFetch }: IProps) => {
   }
 
   return (
-    <form className="flex mb-12  overflow-hidden" onSubmit={fetchTimeline}>
+    <form className="flex mb-12 overflow-hidden" onSubmit={fetchTimeline}>
       <input
         required
         ref={userRef}
